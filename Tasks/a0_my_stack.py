@@ -14,6 +14,7 @@ def push(elem: Any) -> None:
     print(elem)
     return None
 
+gfdgfddfg
 
 def pop() -> Any:
     """
