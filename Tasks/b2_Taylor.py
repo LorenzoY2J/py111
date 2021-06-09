@@ -48,4 +48,4 @@ def fact(n):
 
 
 if __name__ == "__main__":
-    print(sinx(2))
+    print(sinx(4))
