@@ -8,8 +8,15 @@ def _prefix_fun(prefix_str: str) -> List[int]:
     :param prefix_str: dubstring for prefix function
     :return: prefix values table
     """
-    print(prefix_str)
-    return []
+    pi = [0] * len(prefix_str)
+    for i in range(1, len(prefix_str)):
+        j = pi[i - 1]
+        while j > 0 and prefix_str[j] != prefix_str[i]:
+            j = pi[j - 1]
+        if prefix_str[j] == prefix_str[i]:
+            j = j + 1
+        pi[i] = j
+    return pi
 
 
 def kmp_algo(inp_string: str, substr: str) -> Optional[int]:
@@ -20,6 +27,12 @@ def kmp_algo(inp_string: str, substr: str) -> Optional[int]:
     :param substr: substr to be found in inp_string (needle)
     :return: index where first occurrence of substr in inp_string started or None if not found
     """
-
-    print(inp_string, substr, _prefix_fun)
-    return None
+    pi = _prefix_fun(substr)
+    k = 0
+    for i in range(len(inp_string)):
+        while k > 0 and inp_string[i] != substr[k]:
+            k = pi[k - 1]
+        if inp_string[i] == substr[k]:
+            k = k + 1
+        if k == len(substr):
+            return i - len(substr) + 1
