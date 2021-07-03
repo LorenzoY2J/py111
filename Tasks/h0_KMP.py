@@ -36,3 +36,4 @@ def kmp_algo(inp_string: str, substr: str) -> Optional[int]:
             k = k + 1
         if k == len(substr):
             return i - len(substr) + 1
+        
