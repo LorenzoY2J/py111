@@ -32,5 +32,6 @@ while True:
         if first_out > len(new_list):
             first_out = first_out - len(new_list) - 1
         print(new_list)
+        
 
 
