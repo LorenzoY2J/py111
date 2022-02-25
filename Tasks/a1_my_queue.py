@@ -2,8 +2,9 @@
 My little Queue
 """
 from typing import Any
+import collections
 
-queue_ = []
+q = collections.deque()
 
 
 def enqueue(elem: Any) -> None:
@@ -13,7 +14,7 @@ def enqueue(elem: Any) -> None:
     :param elem: element to be added
     :return: Nothing
     """
-    queue_.append(elem)
+    q.append(elem)
 
 
 def dequeue() -> Any:
@@ -22,7 +23,7 @@ def dequeue() -> Any:
 
     :return: dequeued element
     """
-    return queue_.pop(0) if queue_ else None
+    return q.popleft() if q else None
 
 
 def peek(ind: int = 0) -> Any:
@@ -32,8 +33,8 @@ def peek(ind: int = 0) -> Any:
     :param ind: index of element (count from the beginning)
     :return: peeked element
     """
-    if len(queue_) > ind:
-        return queue_[ind]
+    if len(q) > ind:
+        return q[ind]
 
 
 def clear() -> None:
@@ -42,4 +43,13 @@ def clear() -> None:
 
     :return: None
     """
-    queue_.clear()
+    q.clear()
+
+
+if __name__ == '__main__':
+    enqueue(1)
+    enqueue(2)
+    enqueue(3)
+    print(q)
+    dequeue()
+    print(q)

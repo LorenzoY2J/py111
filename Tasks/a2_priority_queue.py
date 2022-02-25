@@ -4,10 +4,12 @@ Priority Queue
 Queue priorities are from 0 to 10
 """
 from typing import Any
+from collections import deque
 
 q = deque()
 
 q = []
+
 
 def enqueue(elem: Any, priority: int = 0) -> None:
     """
@@ -16,6 +18,15 @@ def enqueue(elem: Any, priority: int = 0) -> None:
     :param elem: element to be added
     :return: Nothing
     """
+    global q
+
+    for pr in range(11):
+        if pr == priority:
+            q.append([])
+            q[pr].append(elem)
+        else:
+            q.append([])
+
     return None
 
 
@@ -25,6 +36,14 @@ def dequeue() -> Any:
 
     :return: dequeued element
     """
+    global q
+
+    for pr in range(len(q)):
+        if len(q[pr]) > 0:
+            zero = q[pr][0]
+            del q[pr][0]
+            return zero
+
     return None
 
 
@@ -35,7 +54,16 @@ def peek(ind: int = 0, priority: int = 0) -> Any:
     :param ind: index of element (count from the beginning)
     :return: peeked element
     """
-    return None
+    global q
+
+    try:
+        for pr in range(11):
+            if pr == priority:
+                top = q[pr][ind]
+                return top
+
+    except IndexError:
+        print("IndexError")
 
 
 def clear() -> None:
@@ -44,4 +72,12 @@ def clear() -> None:
 
     :return: None
     """
+    global q
+
+    q = []
+
     return None
+
+
+if __name__ == "__main__":
+    dequeue()
